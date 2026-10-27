@@ -8,5 +8,10 @@ int main(){
 	int map1[TAILLE_Y][TAILLE_X];
 	creation_carte(map1);
 	affiche(map1);
+	map1[0][0] = 1;
+	map1[5][8] = 2;
+	printf("\n");
+	map1[TAILLE_Y-1][TAILLE_X-1] = 5;
+	affiche(map1);
 	return 0 ;
 }
