@@ -1,6 +1,6 @@
-#ifndef FONCTIONS_H
-#define FONCTIONS_H
+#ifndef CARTE_H
+#define CARTE_H
 
-int additionner(int a, int b);
+int additionner_carte(int a, int b);
 
 #endif
