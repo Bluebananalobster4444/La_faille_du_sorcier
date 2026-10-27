@@ -4,7 +4,9 @@
 
 int main(){
 	printf("La faille du sorcier c'est vraiment trop bien enfaite\n") ;
-	printf("%d\n",additionner_vie(6,7));
 	printf("vie de 5 + soin de 5 avec vie max de 7 = %d\nvie de 1 + soin de 5 avec vie max de 7 = %d\n",soin(5,5,7),soin(1,5,7));
+	int map1[TAILLE_Y][TAILLE_X];
+	creation_carte(map1);
+	affiche(map1);
 	return 0 ;
 }
