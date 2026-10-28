@@ -1,12 +1,21 @@
 #include <stdio.h>
+#include <time.h>
+
 #include "raylib/src/raylib.h"
 #include "assets/carte/carte.h"
 #include "assets/vie/vie.h"
 #include "Mvt/joueur/joueur.h"
 
+#define LAR 1500
+#define LON 800
+
 int main(){
-	printf("La faille du sorcier c'est vraiment trop bien enfaite\n") ;
-	printf("vie de 5 + soin de 5 avec vie max de 7 = %d\nvie de 1 + soin de 5 avec vie max de 7 = %d\n",soin(5,5,7),soin(1,5,7));
+
+	InitWindow(LAR,LON,"Banane");
+	SetTargetFPS(60);
+
+	Rectangle joueur = { 380, 400, 40, 40 };
+
 	int map1[TAILLE_Y][TAILLE_X];
 	creation_carte(map1);
 	map1[0][0] = 1;
@@ -14,12 +23,45 @@ int main(){
 	printf("\n");
 	map1[TAILLE_Y-1][TAILLE_X-1] = 5;
 	affiche(map1);
+
+/*
 	int i = -1;
 	int mv = 0;
 	int c;
 	int fonctionne;
-	while(i != 0){
-		printf("Direction de deplacement :\n4. Gauche\n6. Droite\n2. Bas\n8. Haut\n0. Sortir\n");
+*/
+	while (!WindowShouldClose()){
+
+
+
+		if (IsKeyDown(KEY_RIGHT)){
+			joueur.x += 10;
+		}
+
+		if (IsKeyDown(KEY_LEFT)){
+			joueur.x -= 10;
+		}
+
+		if (IsKeyDown(KEY_DOWN)){
+			joueur.y += 10;
+		}
+
+		if (IsKeyDown(KEY_UP)){
+			joueur.y -= 10;
+		}
+
+		if (joueur.x < 0) joueur.x = 0;
+	        if (joueur.y < 0) joueur.y = 0;
+            	if (joueur.x + joueur.width  >LAR) joueur.x = LAR - joueur.width;
+            	if (joueur.y + joueur.height > LON) joueur.y = LON - joueur.height;
+
+		BeginDrawing();
+            	ClearBackground(BLACK);
+
+		DrawRectangleRec(joueur, BLUE);
+
+		EndDrawing();
+		/*printf("Direction de deplacement :\n4. Gauche\n6. Droite\n2. Bas\n8. Haut\n0. Sortir\n");
 		printf("mv = %d\n",mv);
 		printf("choix : ");
 		fonctionne = scanf("%d",&i);
@@ -55,6 +97,8 @@ int main(){
 			break;
 		}
 		printf("\n\n");
+		*/
 	}
+	CloseWindow();
 	return 0 ;
 }
