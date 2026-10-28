@@ -10,6 +10,6 @@
 */
 
 
-int move(map[TAILLE_Y][TAILLE_X], char dir);
+int move(int map[TAILLE_Y][TAILLE_X], char dir);
 
 #endif
