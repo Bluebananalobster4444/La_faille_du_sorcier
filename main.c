@@ -6,15 +6,19 @@
 #include "assets/vie/vie.h"
 #include "Mvt/joueur/joueur.h"
 
-#define LAR 1500
+#define LAR 800
 #define LON 800
+
+#define DODO 100000
 
 int main(){
 
-	InitWindow(LAR,LON,"Banane");
+	InitWindow(LAR,LON,"La_faille_du_sorcier");
 	SetTargetFPS(60);
-
-	Rectangle joueur = { 380, 400, 40, 40 };
+	int cell = 0.1*LON;
+	int lar_j = 0.1*LAR;
+	int lon_j = 0.1*LON;
+	Rectangle joueur = { 0, 0, lar_j, lon_j };
 
 	int map1[TAILLE_Y][TAILLE_X];
 	creation_carte(map1);
@@ -22,7 +26,7 @@ int main(){
 	map1[5][8] = 2;
 	printf("\n");
 	map1[TAILLE_Y-1][TAILLE_X-1] = 5;
-	affiche(map1);
+	//affiche(map1);
 
 /*
 	int i = -1;
@@ -30,24 +34,29 @@ int main(){
 	int c;
 	int fonctionne;
 */
+
 	while (!WindowShouldClose()){
 
 
 
 		if (IsKeyDown(KEY_RIGHT)){
-			joueur.x += 10;
+			joueur.x += 0.1*LAR;
+			usleep(DODO);
 		}
 
 		if (IsKeyDown(KEY_LEFT)){
-			joueur.x -= 10;
+			joueur.x -= 0.1*LAR;
+			usleep(DODO);
 		}
 
 		if (IsKeyDown(KEY_DOWN)){
-			joueur.y += 10;
+			joueur.y += 0.1*LON;
+			usleep(DODO);
 		}
 
 		if (IsKeyDown(KEY_UP)){
-			joueur.y -= 10;
+			joueur.y -= 0.1*LON;
+			usleep(DODO);
 		}
 
 		if (joueur.x < 0) joueur.x = 0;
@@ -58,7 +67,15 @@ int main(){
 		BeginDrawing();
             	ClearBackground(BLACK);
 
-		DrawRectangleRec(joueur, BLUE);
+		for (int x = 0; x <= LAR; x += cell) {
+            		DrawLine(x, 0, x, LON, LIGHTGRAY);
+        	}
+
+		for (int y = 0; y <= LON; y += cell) {
+                        DrawLine(0, y, LAR, y, LIGHTGRAY);
+                }
+
+		DrawRectangleRec(joueur, YELLOW);
 
 		EndDrawing();
 		/*printf("Direction de deplacement :\n4. Gauche\n6. Droite\n2. Bas\n8. Haut\n0. Sortir\n");
