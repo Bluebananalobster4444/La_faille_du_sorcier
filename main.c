@@ -30,9 +30,10 @@ int main(){
 	map1[TAILLE_Y-1][TAILLE_X-1] = 5;
 	//affiche(map1);
 
-/*
-	int i = -1;
+
+	//int i = -1;
 	int mv = 0;
+/*
 	int c;
 	int fonctionne;
 */
@@ -43,6 +44,7 @@ int main(){
 
 		if (IsKeyDown(KEY_RIGHT)){
 			joueur.x += 0.1*LAR;
+			mv += 1;
 			if(!en_mouvement){
 				usleep(DODO);
 			}
@@ -51,6 +53,7 @@ int main(){
 
 		if (IsKeyDown(KEY_LEFT)){
 			joueur.x -= 0.1*LAR;
+			mv += 1;
 			if(!en_mouvement){
                                 usleep(DODO);
                         }
@@ -59,6 +62,7 @@ int main(){
 
 		if (IsKeyDown(KEY_DOWN)){
 			joueur.y += 0.1*LON;
+			mv += 1;
 			if(!en_mouvement){
                                 usleep(DODO);
                         }
@@ -67,17 +71,34 @@ int main(){
 
 		if (IsKeyDown(KEY_UP)){
 			joueur.y -= 0.1*LON;
+			mv += 1;
 			if(!en_mouvement){
                                 usleep(DODO);
                         }
                         en_mouvement = 1;
 		}
+
+		if(IsKeyDown(KEY_A)){
+			mv = 0;
+		}
 		en_mouvement = 0;
 
-		if (joueur.x < 0) joueur.x = 0;
-	        if (joueur.y < 0) joueur.y = 0;
-            	if (joueur.x + joueur.width  >LAR) joueur.x = LAR - joueur.width;
-            	if (joueur.y + joueur.height > LON) joueur.y = LON - joueur.height;
+		if (joueur.x < 0){
+			joueur.x = 0;
+			mv -= 1;
+		}
+	        if (joueur.y < 0){
+			joueur.y = 0;
+			mv -= 1;
+		}
+            	if (joueur.x + joueur.width  >LAR){
+			joueur.x = LAR - joueur.width;
+			mv -= 1;
+		}
+            	if (joueur.y + joueur.height > LON){
+			joueur.y = LON - joueur.height;
+			mv -= 1;
+		}
 
 		BeginDrawing();
             	ClearBackground(BLACK);
@@ -90,8 +111,8 @@ int main(){
                         DrawLine(0, y, LAR, y, LIGHTGRAY);
                 }
 
-		DrawRectangleRec(joueur, YELLOW);
-
+		DrawRectangleRec(joueur, BROWN);
+		DrawText(TextFormat("Mouvements effectués : %d", mv), 10, 10, 24, WHITE);
 		EndDrawing();
 		/*printf("Direction de deplacement :\n4. Gauche\n6. Droite\n2. Bas\n8. Haut\n0. Sortir\n");
 		printf("mv = %d\n",mv);
