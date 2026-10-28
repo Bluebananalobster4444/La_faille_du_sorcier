@@ -19,7 +19,7 @@ int main(){
 	int c;
 	int fonctionne;
 	while(i != 0){
-		printf("Direction de déplacement :\n4. Gauche\n6. Droite\n2. Bas\n8. Haut\n0. Sortir\n");
+		printf("Direction de deplacement :\n4. Gauche\n6. Droite\n2. Bas\n8. Haut\n0. Sortir\n");
 		printf("mv = %d\n",mv);
 		printf("choix : ");
 		fonctionne = scanf("%d",&i);
