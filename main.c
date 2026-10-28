@@ -18,6 +18,8 @@ int main(){
 	int cell = 0.1*LON;
 	int lar_j = 0.1*LAR;
 	int lon_j = 0.1*LON;
+	int en_mouvement = 0;
+
 	Rectangle joueur = { 0, 0, lar_j, lon_j };
 
 	int map1[TAILLE_Y][TAILLE_X];
@@ -41,23 +43,36 @@ int main(){
 
 		if (IsKeyDown(KEY_RIGHT)){
 			joueur.x += 0.1*LAR;
-			usleep(DODO);
+			if(!en_mouvement){
+				usleep(DODO);
+			}
+			en_mouvement = 1;
 		}
 
 		if (IsKeyDown(KEY_LEFT)){
 			joueur.x -= 0.1*LAR;
-			usleep(DODO);
+			if(!en_mouvement){
+                                usleep(DODO);
+                        }
+                        en_mouvement = 1;
 		}
 
 		if (IsKeyDown(KEY_DOWN)){
 			joueur.y += 0.1*LON;
-			usleep(DODO);
+			if(!en_mouvement){
+                                usleep(DODO);
+                        }
+                        en_mouvement = 1;
 		}
 
 		if (IsKeyDown(KEY_UP)){
 			joueur.y -= 0.1*LON;
-			usleep(DODO);
+			if(!en_mouvement){
+                                usleep(DODO);
+                        }
+                        en_mouvement = 1;
 		}
+		en_mouvement = 0;
 
 		if (joueur.x < 0) joueur.x = 0;
 	        if (joueur.y < 0) joueur.y = 0;
