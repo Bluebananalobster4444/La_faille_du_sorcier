@@ -1,9 +1,32 @@
-CC = gcc
-CFLAGS = -Wall -Wextra -I.
-TARGET = jeu.out
+TARGET = jeu
 
-rwildcard = $(foreach d,$(wildcard $(1)*),$(call rwildcard,$(d)/,$(2)) $(filter $(subst *,%,$(2)),$(d)))
-SRC = $(call rwildcard,,*.c)
+CC     = gcc
+CFLAGS = -Wall -Wextra -std=c99 -O2
 
-all:
-	$(CC) $(CFLAGS) $(SRC) -o $(TARGET)
+SRC = $(wildcard *.c assets/vie/*.c assets/carte/*.c Mvt/joueur/*.c)
+OBJ = $(SRC:.c=.o)
+
+ifeq ($(OS),Windows_NT)
+    TARGET := $(TARGET).exe
+    LDFLAGS = -lraylib -lopengl32 -lgdi32 -lwinmm
+    RM      = del /Q
+else
+    LDFLAGS = -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
+    RM      = rm -f
+endif
+
+all: $(TARGET)
+
+$(TARGET): $(OBJ)
+	$(CC) $(OBJ) -o $(TARGET) $(LDFLAGS)
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+clean:
+	$(RM) $(OBJ) $(TARGET)
+
+run: all
+	./$(TARGET)
+
+.PHONY: all clean run

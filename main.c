@@ -1,7 +1,8 @@
 #include <stdio.h>
+#include "raylib/src/raylib.h"
 #include "assets/carte/carte.h"
 #include "assets/vie/vie.h"
-#include "mvt/joueur/joueur.h"
+#include "Mvt/joueur/joueur.h"
 
 int main(){
 	printf("La faille du sorcier c'est vraiment trop bien enfaite\n") ;
@@ -47,6 +48,11 @@ int main(){
 			default : printf("Mauvais choix\n\n");
 				  mv += 2;
 				  affiche(map1);
+		}
+		if(map1[TAILLE_Y-1][TAILLE_X-1] != VICTOIRE){
+			printf("\n\n");
+			printf("Bravo\n");
+			break;
 		}
 		printf("\n\n");
 	}
