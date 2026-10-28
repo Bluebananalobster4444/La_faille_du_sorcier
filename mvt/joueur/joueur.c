@@ -1,6 +1,6 @@
 #include "assets/carte/carte.h"
+#include "joueur.h"
 
-#define VICTOIRE 5
 
 
 int move(int map[TAILLE_Y][TAILLE_X], char dir){

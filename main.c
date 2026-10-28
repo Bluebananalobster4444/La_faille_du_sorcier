@@ -18,7 +18,7 @@ int main(){
 	int c;
 	int fonctionne;
 	while(i != 0){
-		printf("Direction de déplacement :\n4. Gauche\n6. Droite\n2. Bas\n8. Haut\n0. Sortir\n");
+		printf("Direction de deplacement :\n4. Gauche\n6. Droite\n2. Bas\n8. Haut\n0. Sortir\n");
 		printf("mv = %d\n",mv);
 		printf("choix : ");
 		fonctionne = scanf("%d",&i);
@@ -48,6 +48,10 @@ int main(){
 				  mv += 2;
 				  affiche(map1);
 		}
+		if (map1[TAILLE_Y-1][TAILLE_X-1] != VICTOIRE ) {
+			printf("Bravo\n") ;
+			break;
+			}
 		printf("\n\n");
 	}
 	return 0 ;

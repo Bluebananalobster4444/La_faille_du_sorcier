@@ -1,6 +1,7 @@
 #ifndef JOUEUR_H
 #define JOUEUR_H
 
+#define VICTOIRE 5
 /**
 *entrée map : [int][int]
 *entrée dir : char
