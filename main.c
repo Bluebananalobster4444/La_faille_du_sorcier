@@ -1,6 +1,6 @@
 #include <stdio.h>
-#include "assets/map/carte.h"
-#include "assets/healthbar/vie.h"
+#include "assets/carte/carte.h"
+#include "assets/vie/vie.h"
 
 int main(){
 	printf("La faille du sorcier c'est vraiment trop bien enfaite\n") ;
