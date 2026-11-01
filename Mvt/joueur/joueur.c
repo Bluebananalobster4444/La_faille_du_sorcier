@@ -32,7 +32,7 @@ int move(int map[TAILLE_Y][TAILLE_X], char dir){
 	}
 	if((pos_x < 0 || pos_x >= TAILLE_X) || (pos_y < 0 || pos_y >= TAILLE_Y) || (map[pos_y][pos_x] != 0 && map[pos_y][pos_x] != VICTOIRE)){   //valeur de victoire (modifiable ici)
 		map[tmp_y][tmp_x] = 1;
-		return 2;
+		return 0;
 	}
 	else{
 		map[pos_y][pos_x] = 1;

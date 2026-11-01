@@ -5,9 +5,11 @@
 #include "assets/carte/carte.h"
 #include "assets/vie/vie.h"
 #include "Mvt/joueur/joueur.h"
+#include "menu/principal/principal.h"
+#include "menu/option/option.h"
 
 #define LAR 800
-#define LON 800
+#define LON 800     //ne marche pas avec 1600 à réglé
 
 #define DODO 100000
 
@@ -29,51 +31,57 @@ int main(){
 	int map1[TAILLE_Y][TAILLE_X];
 	creation_carte(map1);
 	map1[0][0] = 1;
-	map1[5][8] = 2;
+	map1[1][1] = 2;
 	printf("\n");
 	map1[TAILLE_Y-1][TAILLE_X-1] = 5;
-
+	affiche(map1);
 	int mv = 0;
 	int et = 1;
 
 	while (!WindowShouldClose()){
 
-
-
 		if (IsKeyDown(KEY_RIGHT)){
-			joueur.x += 0.1*LAR;
-			mv += 1;
-			if(!en_mouvement){
-				usleep(DODO);
+			if(move(map1,'D')){
+				joueur.x += 0.1*LAR;
+				mv += 1;
+				if(!en_mouvement){
+					usleep(DODO);
+				}
+				en_mouvement = 1;
 			}
-			en_mouvement = 1;
 		}
 
 		if (IsKeyDown(KEY_LEFT)){
-			joueur.x -= 0.1*LAR;
-			mv += 1;
-			if(!en_mouvement){
-                                usleep(DODO);
-                        }
-                        en_mouvement = 1;
+			if(move(map1,'G')){
+				joueur.x -= 0.1*LAR;
+				mv += 1;
+				if(!en_mouvement){
+                                	usleep(DODO);
+                        	}
+                        	en_mouvement = 1;
+			}
 		}
 
 		if (IsKeyDown(KEY_DOWN)){
-			joueur.y += 0.1*LON;
-			mv += 1;
-			if(!en_mouvement){
-                                usleep(DODO);
-                        }
-                        en_mouvement = 1;
+			if(move(map1,'B')){
+				joueur.y += 0.1*LON;
+				mv += 1;
+				if(!en_mouvement){
+                        	        usleep(DODO);
+                        	}
+                        	en_mouvement = 1;
+			}
 		}
 
 		if (IsKeyDown(KEY_UP)){
-			joueur.y -= 0.1*LON;
-			mv += 1;
-			if(!en_mouvement){
-                                usleep(DODO);
-                        }
-                        en_mouvement = 1;
+			if(move(map1,'H')){
+				joueur.y -= 0.1*LON;
+				mv += 1;
+				if(!en_mouvement){
+                                	usleep(DODO);
+                        	}
+                        	en_mouvement = 1;
+			}
 		}
 
 		if(IsKeyDown(KEY_A)){                    //Q sur AZERTY (probable différence entre AZERTY et QWERTY)
